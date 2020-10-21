@@ -26,7 +26,7 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: @user
+    render json: { user: @user }, status: :ok
   end
 
   # POST /users
@@ -63,8 +63,7 @@ class Api::V1::UsersController < ApplicationController
     def set_user
       begin
         @user = User.find(params[:user_id])
-        render json: { user: user }, status: :ok
-      rescue
+      rescue => e
         render json: { errors: e.message}, status: 404
       end
     end
