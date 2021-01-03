@@ -43,7 +43,7 @@ class Api::V1::UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
-      render json: @user
+      render json: @user, status: :ok
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -52,7 +52,7 @@ class Api::V1::UsersController < ApplicationController
   # DELETE /users/1
   def destroy
     if @user.destroy
-      render json: { user: @user }, status: 204
+      render json: {}, status: 204
     else
       render json: { errors: @user.errors.messages }, status: 422
     end
